@@ -1,5 +1,3 @@
-#kは{1,2}で1が出た回数を数える!!!
-#つまり、系列jでは0の出た回数！！
 CNMLwj<-function(past,j,n,type=2){
   km<-sum(past[,1]>past[,2])#count k of past sequence
   kn<-sum(j==0)             #count k of sequence j
