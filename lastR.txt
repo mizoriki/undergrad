@@ -1,0 +1,65 @@
+
+cairo_pdf("pic_exp1.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plotS3(crossPR(1.4,100),100,5,10)
+dev.off()
+cairo_pdf("pic_exp2.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plotS3(crossPR(1.4,100),100,50,100)
+dev.off()
+cairo_pdf("pic_exp3.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plotS3(allk(1.1,100),100,0,10)
+dev.off()
+cairo_pdf("pic_exp4.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plotS3(crossPR(1.4,100),100,9,10)
+dev.off()
+
+cairo_pdf("pic_mixNMLS10.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(opt10$par,crossPR(1.3,100),10)
+dev.off()
+
+
+cairo_pdf("pic_mixNMLS100.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(opt100a$par,crossPR(1.3,100),100)
+dev.off()
+
+
+cairo_pdf("pic_betaNML10.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+betaNMLplot(opt10$par,crossPR(1.3,100),10)
+dev.off()
+
+cairo_pdf("pic_betaNML100.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+betaNMLplot(opt100$par,crossPR(1.3,100),100)
+dev.off()
+
+cairo_pdf("pic_betaNML200.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+betaNMLplot(opt200$par,crossPR(1.3,200),200)
+dev.off()
+
+cairo_pdf("pic_cnml2mix100xpast5.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(optc2$par,crossPR(1.3,100),100,type=2,km=5,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml3mix100xpast5.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(optc3$par,crossPR(1.3,100),100,type=3,km=5,m=10)
+dev.off()
+
+
+cairo_pdf("pic_mixNMLS500.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(opt500a$par,crossPR(1.3,500),500)
+dev.off()
+
+cairo_pdf("pic_Sbeta41.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plot4(xik,5651)
+dev.off()

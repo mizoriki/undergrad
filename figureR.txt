@@ -1,0 +1,267 @@
+Figure List
+###############################################
+   図の調整　[bb=a b c d, height= cm]
+   acをまず調整して真ん中に
+　heightをずらして下に
+　 bdずらして図の大きさを程よくする。
+####################################################
+cairo_pdf("pic_betaNML10.pdf", width=7, height=5.5, family="Meiryo")
+par(mgp=c(2,0.8,0))
+betaNMLplot(opt10$par,crossPR(1.3,100),10)
+dev.off()
+
+cairo_pdf("pic_cnml1prob.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+betaplot2(30,100,tx2)
+dev.off()
+
+
+realuniv<-1:500
+for(i in 1:500) realuniv[i]<-integrate(function(b){crpn(xik[1001:1500,b,i)},lower=0,upper=1)$value
+
+
+DONE 3.2 CNML1               1
+DONE 4.1 Sbeta100,100        1
+DONE 5.1 expdata 1-4         4
+DONE   5.2 PRxik exp           4
+DONE 5.3.1 betamixturevar, KLD  2
+2LEFT 5.3.2 betamixture100etc    6
+DONE 5.3.3 betaNML100etc        3
+
+DONE 5.4.1 crossPR13100cnml2past510   7
+DONE 5.4.2 cnml3past810 etc           7
+total 35 4LEFT
+
+BUT:CNML3は刻み幅増やす価値あるかも
+
+5.1
+crossPR14100past5-10
+crossPR14100past50100
+allk11100past010
+crossPR14100past910
+
+4.1
+library(logopt)
+
+ここから下全部コード
+
+############4.1DONE################################
+cairo_pdf("pic_Sbeta41.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plot4(xik,5651)
+dev.off()
+
+###############5.1DONE##############################
+cairo_pdf("pic_exp1.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plotS3(crossPR(1.4,100),100,5,10)
+dev.off()
+cairo_pdf("pic_exp2.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plotS3(crossPR(1.4,100),100,50,100)
+dev.off()
+cairo_pdf("pic_exp3.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plotS3(allk(1.1,100),100,0,10)
+dev.off()
+cairo_pdf("pic_exp4.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plotS3(crossPR(1.4,100),100,9,10)
+dev.off()
+##############5.2 DONE############################ 
+cairo_pdf("pic_pricerelative0.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plot(1:1000,pik[501:1500,1]/pik[1001,1],type="l",xlab="経過日数t",ylab="資産St",ylim=c(0,10))
+lines(1:1000,pik[501:1500,2]/pik[1001,2],lty=2)
+legend("topleft",c('銘柄1','銘柄2'),lty=c(1,2))
+dev.off()
+
+cairo_pdf("pic_pricerelative1.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plot(1:1000,xik[501:1500,1],type="l",xlab="経過日数t",ylab="価格変動比x_t")
+dev.off()
+
+cairo_pdf("pic_pricerelative2.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plot(1:1000,xik[501:1500,2],type="l",xlab="経過日数t",ylab="価格変動比x_t")
+dev.off()
+
+cairo_pdf("pic_realdata.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plotS3(xik[1001:1500,],500,254,500)
+lines(1:500,realuniv[1:500])
+dev.off()
+
+##############5.3.1 DONE###################################
+betamixvar
+betamixKLD
+###############5.3.2#####################################
+cairo_pdf("pic_mixNMLS10.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(opt10$par,crossPR(1.3,100),10)
+dev.off()
+
+cairo_pdf("pic_mixNML100.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+opt100a<-mixNMLopt(100,cut=500)
+dev.off()
+
+
+cairo_pdf("pic_mixNMLS100.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(opt100a$par,crossPR(1.3,100),100)
+dev.off()
+
+
+cairo_pdf("pic_mixNML500.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+opt500a<-mixNMLopt(500,cut=2500)
+dev.off()
+
+cairo_pdf("pic_mixNMLS500.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(opt500a$par,crossPR(1.3,500),500)
+dev.off()
+
+
+###############5.3.3DONE##################
+cairo_pdf("pic_betaNML10.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+betaNMLplot(opt10$par,crossPR(1.3,100),10)
+dev.off()
+
+cairo_pdf("pic_betaNML100.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+betaNMLplot(opt100$par,crossPR(1.3,100),100)
+dev.off()
+
+cairo_pdf("pic_betaNML200.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+betaNMLplot(opt200$par,crossPR(1.3,200),200)
+dev.off()
+
+
+
+
+###########5.4HALF DONE#########################################
+cairo_pdf("pic_cnml2mix100past5.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+optc2<-mixNMLopt(100,cut=200,cnml=2,km=5,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml2mix100xpast5.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(optc2$par,crossPR(1.3,100),100,type=2,km=5,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml2mix100past0.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixNMLopt(100,cut=100,cnml=2,km=0,m=10)
+dev.off()
+
+
+#############ここからまだ############################
+cairo_pdf("pic_cnml2mix100past2.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixNMLopt(100,cut=100,cnml=2,km=2,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml2mix100past8.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixNMLopt(100,cut=100,cnml=2,km=8,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml2mix100past10.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixNMLopt(100,cut=100,cnml=2,km=10,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml2mix100past50.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixNMLopt(100,cut=100,cnml=2,km=50,m=100)
+dev.off()
+
+
+
+
+cairo_pdf("pic_cnml3mix100past5.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+optc3<-mixNMLopt(100,cut=100,cnml=3,km=5,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml3mix100xpast5.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(optc3$par,crossPR(1.3,100),100,type=3,km=5,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml3mix100past0.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixNMLopt(100,cut=100,cnml=3,km=0,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml3mix100past2.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixNMLopt(100,cut=100,cnml=3,km=2,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml3mix100past8.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixNMLopt(100,cut=100,cnml=3,km=8,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml3mix100past10.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixNMLopt(100,cut=100,cnml=3,km=10,m=10)
+dev.off()
+
+cairo_pdf("pic_cnml3mix100past50.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixNMLopt(100,cut=100,cnml=3,km=50,m=100)
+dev.off()
+
+
+
+cairo_pdf("pic_realdata.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plotS3(xik[1001:1500,],500,254,500)
+lines(1:500,realuniv[1:500])
+dev.off()
+
+cairo_pdf("pic_mixNML100.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+opt100a<-mixNMLopt(100,cut=500)
+dev.off()
+
+
+cairo_pdf("pic_mixNMLS100.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(opt100a$par,crossPR(1.3,100),100)
+dev.off()
+
+###########ここまで！02/07 18:47############################
+
+cairo_pdf("pic_mixNML500.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+opt500a<-mixNMLopt(500,cut=2500)
+dev.off()
+
+cairo_pdf("pic_mixNMLS500X.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+mixSplot2(opt500a$par,crossPR(1.3,500),500)
+dev.off()
+###最悪　n=500じゃなくていいかも
+
+cairo_pdf("pic_cnml2mix100past0X.pdf", width=7, height=7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+optc2<-mixNMLopt(100,cut=100,cnml=2,km=0,m=10)
+dev.off()
+##なんかやり忘れてた
+cairo_pdf("pic_realdataX.pdf", width=7, height=5.7, family="Meiryo")
+par(mgp=c(2,0.8,0))
+plotS3(xik[1001:1500,],500,254,500)
+lines(1:500,realuniv[1:500])
+legend("topleft",c('CNML1','CNML2','CNML3','NML','uniform-mixture'),col=c("red","blue","purple","green","black"),lty=c(1,1,1,1,1))
+dev.off()
+###legendがおかしい
+
+
